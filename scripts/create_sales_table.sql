@@ -5,17 +5,17 @@
 CREATE DATABASE retail_sales;
 USE retail_sales;
 CREATE TABLE sales (
-	SaleID INT AUTO_INCREMENT PRIMARY KEY,
-    TransactionID VARCHAR(50),
-    CustomerID VARCHAR(50),
-    ProductName VARCHAR(100),
-    Category VARCHAR(50),
-    Region VARCHAR(50),
-    SaleDate DATE,
-    Quantity INT,
-    UnitPrice DECIMAL(10,2),
-    DiscountPct DECIMAL(5,2),
-    SalesAmount DECIMAL(10,2),
-    SalesChannel VARCHAR(50),
-    CustomerSegment VARCHAR(50)
+	sale_id INT AUTO_INCREMENT PRIMARY KEY,
+    transaction_id VARCHAR(50),
+    sale_date DATE,
+    customer_id VARCHAR(50),
+    customer_segment VARCHAR(50),
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    quantity INT,
+    unit_price DECIMAL(10,2),
+    discount_pct DECIMAL(5,2),
+    sales_amount DECIMAL(10,2),
+    sales_channel VARCHAR(50),
+    region VARCHAR(50)
 );
