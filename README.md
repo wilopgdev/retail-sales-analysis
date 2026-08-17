@@ -21,3 +21,7 @@ Este proyecto simula la necesidad de una empresa minorista que busca entender el
 
 ---
 *Proyecto de portafolio creado por Wilington Patiño Gómez*
+
+### Importación de datos
+El script `import_sales_data.sql` muestra cómo cargar el dataset en la tabla `sales`.  
+⚠️ Ajusta la ruta del archivo CSV según tu entorno local antes de ejecutar el script.
