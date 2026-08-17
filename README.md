@@ -64,3 +64,4 @@ CREATE TABLE sales (
     region VARCHAR(50)
 );
 
+*Proyecto de portafolio creado por Wilington Patiño Gómez*
