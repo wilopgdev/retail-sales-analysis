@@ -41,3 +41,26 @@ En el script `import_sales_data.sql` se utilizan variables temporales (`@columna
 - Estas columnas no se almacenan en la tabla porque el objetivo del proyecto es analizar ventas, clientes y productos desde una perspectiva general.  
 - En otros proyectos podrían ser útiles para análisis más detallados (ejemplo: segmentación por género o métodos de pago).  
 - De esta forma, el script se mantiene limpio y enfocado en las métricas de negocio que se quieren mostrar en el proyecto.
+
+### Diseño de la tabla `sales`
+
+La tabla se creó siguiendo modelado de datos, priorizando un esquema simple y enfocado en el análisis de ventas.  
+Se definieron nombres consistentes en `snake_case`, tipos de datos adecuados y una clave primaria autoincremental.
+
+```sql
+CREATE TABLE sales (
+    sale_id INT AUTO_INCREMENT PRIMARY KEY,
+    transaction_id VARCHAR(50),
+    sale_date DATE,
+    customer_id VARCHAR(50),
+    customer_segment VARCHAR(50),
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    quantity INT,
+    unit_price DECIMAL(10,2),
+    discount_pct DECIMAL(5,2),
+    sales_amount DECIMAL(10,2),
+    sales_channel VARCHAR(50),
+    region VARCHAR(50)
+);
+
