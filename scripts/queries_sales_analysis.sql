@@ -5,10 +5,10 @@ GROUP BY product_name
 ORDER BY total_vendido DESC
 LIMIT 10;
 
--- Consulta de clientes mas frecuentes
-SELECT customer_id, COUNT(transaction_id) AS compras_realizadas
+-- Consulta de clientes mas frecuentes con productos comprados
+SELECT customer_id, product_name,  COUNT(transaction_id) AS compras_realizadas
 FROM sales
-GROUP BY customer_id
+GROUP BY customer_id, product_name
 ORDER BY compras_realizadas DESC
 LIMIT 10;
 
