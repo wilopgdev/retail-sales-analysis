@@ -3,6 +3,14 @@
 ## 📝 Descripción del Proyecto
 Este proyecto simula la necesidad de una empresa minorista que busca entender el comportamiento de sus ventas, identificar productos más rentables, clientes frecuentes y tendencias de compra. Se construirá una base de datos en MySQL con datos públicos confiables, se realizarán consultas SQL para obtener métricas clave, se exportarán resultados a Excel para análisis intermedio y se crearán dashboards interactivos en Power BI.
 
+## 📂 Fuente de los Datos
+
+Para este proyecto utilicé un dataset público de ventas minoristas, disponible en repositorios abiertos de análisis de datos, en este caso Kaggle.
+El archivo `retail_sales_dataset.csv` fue seleccionado porque simula transacciones reales de una empresa minorista, pero no corresponde a información privada ni confidencial.
+
+📢	Esto garantiza que el proyecto es reproducible, que cualquier persona puede trabajar con los mismos datos sin restricciones y que no se comprometen datos sensibles, de índole privada o empresarial.
+
+
 ## 🛠️ Herramientas Utilizadas
 * **Base de Datos:** MySQL / SQL Server
 * **Lenguaje:** SQL (Consultas, Agregaciones, JOINs)
