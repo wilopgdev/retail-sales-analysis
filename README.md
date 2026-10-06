@@ -10,6 +10,9 @@ El archivo `retail_sales_dataset.csv` fue seleccionado porque simula transaccion
 
 📢	Esto garantiza que el proyecto es reproducible, que cualquier persona puede trabajar con los mismos datos sin restricciones y que no se comprometen datos sensibles, de índole privada o empresarial.
 
+### Vista previa del dataset
+
+![Dataset preview](images/dataset_preview.png)
 
 ## 🛠️ Herramientas Utilizadas
 * **Base de Datos:** MySQL / SQL Server
@@ -29,26 +32,6 @@ El archivo `retail_sales_dataset.csv` fue seleccionado porque simula transaccion
 
 ---
 *Proyecto de portafolio creado por Wilington Patiño Gómez*
-
-### Importación de datos
-
-El script `import_sales_data.sql` muestra cómo cargar el dataset `retail_sales_dataset.csv` en la tabla `sales`.
-
-⚠️ Nota importante:
-- La ruta del archivo CSV en el comando `LOAD DATA LOCAL INFILE` debe ajustarse según el entorno local de cada usuario.
-- En este repositorio se utiliza una ruta genérica como referencia, pero no corresponde a una ubicación fija en tu sistema.
-- Antes de ejecutar el script, reemplaza `'ruta/del/archivo/retail_sales_dataset.csv'` por la ubicación real del archivo en tu equipo.
-- No se incluyen credenciales ni configuraciones privadas de MySQL Workbench por motivos de confidencialidad.
-
-### Columnas ignoradas en la importación
-
-El dataset original (`retail_sales_dataset.csv`) contiene más columnas que las definidas en la tabla `sales`.  
-En el script `import_sales_data.sql` se utilizan variables temporales (`@columna`) para capturar y descartar aquellas columnas que no son relevantes para el análisis principal.  
-
-- Columnas ignoradas: `customer_gender`, `customer_age_group`, `product_id`, `brand`, `payment_method`.  
-- Estas columnas no se almacenan en la tabla porque el objetivo del proyecto es analizar ventas, clientes y productos desde una perspectiva general.  
-- En otros proyectos podrían ser útiles para análisis más detallados (ejemplo: segmentación por género o métodos de pago).  
-- De esta forma, el script se mantiene limpio y enfocado en las métricas de negocio que se quieren mostrar en el proyecto.
 
 ### Diseño de la tabla `sales`
 
@@ -72,4 +55,62 @@ CREATE TABLE sales (
     region VARCHAR(50)
 );
 
+### Creación de la tabla en SQL
+
+Para estructurar los datos se creó la base de datos `retail_sales` y la tabla `sales`, definiendo campos como `transaction_id`, `sale_date`, `customer_id`, `product_name`, `quantity`, `unit_price`, `discount_pct`, `sales_amount`, entre otros.
+
+![Create sales table](images/create_sales_table.png)
+
+### Importación de datos
+
+El script `import_sales_data.sql` muestra cómo cargar el dataset `retail_sales_dataset.csv` en la tabla `sales`.
+
+⚠️ Nota importante:
+- La ruta del archivo CSV en el comando `LOAD DATA LOCAL INFILE` debe ajustarse según el entorno local de cada usuario.
+- En este repositorio se utiliza una ruta genérica como referencia, pero no corresponde a una ubicación fija en tu sistema.
+- Antes de ejecutar el script, reemplaza `'ruta/del/archivo/retail_sales_dataset.csv'` por la ubicación real del archivo en tu equipo.
+- No se incluyen credenciales ni configuraciones privadas de MySQL Workbench por motivos de confidencialidad.
+
+### Columnas ignoradas en la importación
+
+El dataset original (`retail_sales_dataset.csv`) contiene más columnas que las definidas en la tabla `sales`.  
+En el script `import_sales_data.sql` se utilizan variables temporales (`@columna`) para capturar y descartar aquellas columnas que no son relevantes para el análisis principal.  
+
+- Columnas ignoradas: `customer_gender`, `customer_age_group`, `product_id`, `brand`, `payment_method`.  
+- Estas columnas no se almacenan en la tabla porque el objetivo del proyecto es analizar ventas, clientes y productos desde una perspectiva general.  
+- En otros proyectos podrían ser útiles para análisis más detallados (ejemplo: segmentación por género o métodos de pago).  
+- De esta forma, el script se mantiene limpio y enfocado en las métricas de negocio que se quieren mostrar en el proyecto.
+
+## Importación de datos
+
+Una vez creada la tabla `sales`, se importó el dataset `retail_sales.csv` utilizando el comando `LOAD DATA LOCAL INFILE`.  
+Este proceso permite cargar grandes volúmenes de datos de manera eficiente en MySQL.
+
+![Import sales data](images/import_sales_data.png)
+
 *Proyecto de portafolio creado por Wilington Patiño Gómez*
+
+## 📊 Consultas de análisis en SQL
+
+Una vez importados los datos, se realizaron consultas SQL para responder las preguntas de negocio planteadas.  
+Estas consultas permiten identificar patrones clave y obtener métricas útiles para la toma de decisiones.
+
+### Principales consultas realizadas
+- **Productos más vendidos:** suma de cantidades por producto.  
+- **Clientes más frecuentes con productos comprados:** conteo de transacciones por cliente y producto.  
+- **Ventas por región:** agregación de montos de venta por región.  
+- **Ventas mensuales:** evolución de las ventas a lo largo del tiempo.
+
+### Script de análisis
+El script `queries_sales_analysis.sql` contiene todas las consultas de negocio documentadas con comentarios.
+
+![Sales analysis queries](images/queries_sales_analysis.png)
+
+### Ejemplo de consulta: productos más vendidos
+```sql
+SELECT product_name, SUM(quantity) AS total_vendido
+FROM sales
+GROUP BY product_name
+ORDER BY total_vendido DESC
+LIMIT 10;
+
